@@ -5,9 +5,11 @@ module ApplicationHelper
   end
 
   def require_login
-    if !current_user
-      redirect_to new_session_path
-    end
+    redirect_to new_session_path if !current_user
+  end
+
+  def logged_in?
+    session[:user_id] != nil
   end
 
 end

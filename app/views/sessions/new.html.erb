@@ -1,1 +1,18 @@
-<h1>You're need to log in here</h1>
+
+<div class="card">
+  <div class="card-body">
+    <div class="container">
+      <div class="box">
+    <br>
+    <%if @error%>
+      <div class="alert alert-danger"><%=@error%></div>
+    <%end%>
+    <%=form_tag sessions_path, class:'form-group' do%>
+      <%= text_field_tag :email, nil, class:'form-control', placeholder:'Email Address', :required => true %>
+      <br>
+      <%= password_field_tag :password , nil, class:'form-control', placeholder:'Password', :required => true %>
+      <br>
+      <%=submit_tag 'Log In', class: "btn btn-primary"%>
+    <%end%>
+  </div>
+</div>
