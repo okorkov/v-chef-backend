@@ -1,5 +1,5 @@
-class ApplicationController < ActionController::API
-  def welcome
-    
-  end
+class ApplicationController < ActionController::Base
+
+  include ApplicationHelper
+
 end
