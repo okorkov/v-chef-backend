@@ -1,2 +1,16 @@
-<h1><%=@blog.title%></h1>
-
+<div class="blog">
+  <h1><%=@blog.title%></h1>
+  <h3><%=@blog.subtitle%></h3>
+  <img src=<%=@blog.hero_image%> height="250px" width="500px">
+  <%@blog.contents.reverse.each do |c| %>
+    <%if c.content_type == 'text'%>
+    <p><%=c.value%></p>
+    <%elsif c.content_type == 'image'%>
+    <img src=<%=c.value%> height="250px" width="250px">
+    <%elsif c.content_type == 'video'%>
+    <iframe width="420" height="315"
+    src=<%=c.value%>>
+    </iframe>
+    <%end%>
+  <%end%>
+</div>

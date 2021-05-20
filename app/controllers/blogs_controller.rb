@@ -1,7 +1,6 @@
 class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
-    @admin = current_user
   end
 
   def show

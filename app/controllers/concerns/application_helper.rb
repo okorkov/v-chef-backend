@@ -12,4 +12,8 @@ module ApplicationHelper
     session[:user_id] != nil
   end
 
+  def define_admin
+    @admin = current_user
+  end
+
 end
