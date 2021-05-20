@@ -1,4 +1,7 @@
 class BlogsController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
+
   def index
     @blogs = Blog.all
   end
@@ -12,6 +15,7 @@ class BlogsController < ApplicationController
   end
 
   def create
+    raise params.inspect
   end
 
   def edit
