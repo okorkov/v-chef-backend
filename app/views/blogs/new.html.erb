@@ -2,21 +2,21 @@
   <form class="row g-3" method="post" action="/admin/<%=@admin.id%>/blogs">
     <div class="col-12">
       <label for="title" class="form-label">Title</label>
-      <input type="text" class="form-control" id="title" placeholder="Title" name="blog[:title]">
+      <input type="text" class="form-control" id="title" placeholder="Title" name="blog[title]">
     </div>
     <div class="col-12">
       <label for="subtitle" class="form-label">Subtitle</label>
-      <input type="text" class="form-control" id="subtitle" placeholder="Subtitle" name="blog[:subtitle]">
+      <input type="text" class="form-control" id="subtitle" placeholder="Subtitle" name="blog[subtitle]">
     </div>
     <div class="col-12">
       <label for="hero_image" class="form-label">Main Image Link</label>
-      <input type="text" class="form-control" id="hero_image" placeholder="https://www.image-example.com/example_image.jpg" name="blog[:hero_image]">
+      <input type="text" class="form-control" id="hero_image" placeholder="https://www.image-example.com/example_image.jpg" name="blog[hero_image]">
     </div>
     <div  class="box border border-warning" style="text-align: center; border:">
     <h3>Content:</h3>
       <div class="input-group" style="padding-bottom:3%;">
         <span class="input-group-text">Initial Text</span>
-        <textarea class="form-control" aria-label="With textarea" name="blog[:contents][t]"></textarea>
+        <textarea class="form-control" aria-label="With textarea" name="blog[contents][t]"></textarea>
       </div>
 
       <div id="contents">
@@ -33,7 +33,7 @@
       <button type="button" style="width:30%;"class="btn btn-primary" onclick="addField()">Add Content Block</button>
     </div>
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="published" name="blog[:status]" value="published">
+      <input class="form-check-input" type="checkbox" id="published" name="blog[status]" value="published">
       <label class="form-check-label" for="published">Would you like to publish this post?</label>
     </div>
     <div class="col-12" style="text-align: center;">
@@ -51,7 +51,7 @@
       let textContent = `
       <div class="input-group">
         <span class="input-group-text">With textarea</span>
-        <textarea class="form-control" aria-label="With textarea" name="blog[:contents][t${Math.random()}]"></textarea>
+        <textarea class="form-control" aria-label="With textarea" name="blog[contents][t${Math.random()}]"></textarea>
       </div><br>`;
       contents.insertAdjacentHTML('beforebegin', textContent);
     }
@@ -59,7 +59,7 @@
       let imageContent = `
       <div class="input-group mb-3">
       <span class="input-group-text">Image URL</span>
-        <input type="text" class="form-control" placeholder="https://www.image-hub.com/example-image.jpg" aria-describedby="basic-addon1" name="blog[:contents][i${Math.random()}]">
+        <input type="text" class="form-control" placeholder="https://www.image-hub.com/example-image.jpg" aria-describedby="basic-addon1" name="blog[contents][i${Math.random()}]">
       </div><br>`;
       contents.insertAdjacentHTML('beforebegin', imageContent);
     }
@@ -67,7 +67,7 @@
       let videoContent = `
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon3">https://www.youtube.com/embed/</span>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="e4Uq8O5ZhUA" name="blog[:contents][v${Math.random()}]">
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="e4Uq8O5ZhUA" name="blog[contents][v${Math.random()}]">
       </div><br>`;
       contents.insertAdjacentHTML('beforebegin', videoContent);
     }

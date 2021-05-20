@@ -4,9 +4,9 @@
 
 
 <div class="row">
-  <div class="col">
     <%@blogs.each do |blog|%>
-      <div class="card" style="width: 25rem;">
+  <div class="col">
+      <div class="card" style="min-width: 25rem; min-height:30rem;">
         <img class="card-img-top" src="<%=blog.hero_image%>" alt="blog image">
         <div class="card-body">
           <h5 class="card-title"><%=blog.title%></h5>
@@ -14,7 +14,7 @@
           <a href="<%=admin_blog_path(@admin, blog)%>" class="btn btn-primary">See Full Blog</a>
         </div>
       </div>
-    <%end%>
   </div>
+    <%end%>
 </div>
 
