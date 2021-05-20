@@ -15,8 +15,10 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Other Category</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Other Category</a>
+        <li style="position:absolute; right:0; padding-right: 5%;">
+         <%=form_tag sessions_destroy_path(current_user), class:'form-group', method:'post' do%>
+          <%=submit_tag 'Log Out', class: "btn btn-danger"%>
+        <%end%>
         </li>
       </ul>
     </div>

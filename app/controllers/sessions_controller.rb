@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  layout false
+
   def new
     redirect_to admin_index_path if logged_in?
   end
