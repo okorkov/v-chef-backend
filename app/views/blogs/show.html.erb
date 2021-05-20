@@ -2,18 +2,18 @@
   <img src=<%=@blog.hero_image%> class="img-fluid" >
   <h1><%=@blog.title%></h1>
   <h4><%=@blog.subtitle%></h4>
-  <%@blog.contents.reverse.each do |c| %>
+  <%@blog.contents.each do |c| %>
     <%if c.content_type == 'text'%>
     <div id="content-<%=c.id%>" class="content">
       <p><%=c.value%></p>
     </div>
     <%elsif c.content_type == 'image'%>
     <div id="content-<%=c.id%>" class="content">
-      <img src=<%=c.value%> height="250px" width="250px">
+      <img src=<%=c.value%> height="50%" width="50%">
     </div>
     <%elsif c.content_type == 'video'%>
      <div id="content-<%=c.id%>" class="content">
-        <iframe width="420" height="315"
+        <iframe width="700" height="500"
           src=<%=c.value%>>
         </iframe>
     </div>
@@ -21,6 +21,3 @@
   <%end%>
 </div>
 
-<style type="text/css">
-  .content { padding-top: 5%; }
-</style>

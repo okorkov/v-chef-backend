@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :contents
   end
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create]
 
   post '/sessions/:id' => 'sessions#destroy', :as => 'sessions_destroy'
 
