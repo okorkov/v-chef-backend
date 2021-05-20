@@ -1,4 +1,8 @@
-<h1>Hello, you can administrate now</h1>
+<h1>Hello, <%=@admin.name%></h1>
+<h3>You have <%=@admin.blogs.size%> post(s)</h3>
+
+<h5>To see all of the blog posts please <%=link_to 'click here', admin_blogs_path(@admin)%> </h5>
+
 
 <%=form_tag sessions_destroy_path(current_user), class:'form-group', method:'post' do%>
   <%=submit_tag 'Log Out', class: "btn btn-danger"%>
