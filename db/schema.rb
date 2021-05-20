@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_002209) do
   end
 
   create_table "contents", force: :cascade do |t|
-    t.string "type"
+    t.string "content_type"
     t.string "value"
     t.string "blog_id"
     t.datetime "created_at", precision: 6, null: false
