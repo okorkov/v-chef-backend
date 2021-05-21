@@ -23,7 +23,7 @@ class BlogsController < ApplicationController
     blog.publish_date = Time.now if params[:blog][:status]
    
     params[:blog][:contents].each do |key, value|
-      create_content_from_hash(key, value,blog)
+      create_content_from_hash(key, value)
     end
      blog.save
      redirect_to admin_blogs_path(@admin)
