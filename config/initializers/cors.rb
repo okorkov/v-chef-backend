@@ -17,7 +17,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://shop-easy-online.web.app', 'http://localhost:3001'
+    origins 'https://v-chef.web.app/', 'http://localhost:3001'
     resource '*',
       headers: :any,
       methods: [:get],
