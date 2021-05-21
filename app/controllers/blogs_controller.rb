@@ -23,13 +23,7 @@ class BlogsController < ApplicationController
     blog.publish_date = Time.now if params[:blog][:status]
    
     params[:blog][:contents].each do |key, value|
-      if key[0] == 't' 
-        blog.contents << Content.create(content_type: 'text', value: value)
-      elsif key[0] == 'i' 
-        blog.contents << Content.create(content_type: 'image', value: value)
-      elsif key[0] == 'v'
-        blog.contents << Content.create(content_type: 'video', value: "https://www.youtube.com/embed/" + value)
-      end
+      create_content_from_hash(key, value,blog)
     end
      blog.save
      redirect_to admin_blogs_path(@admin)
@@ -53,13 +47,7 @@ class BlogsController < ApplicationController
         c.value = value
         c.save
       else
-        if key[0] == 't' 
-          blog.contents << Content.create(content_type: 'text', value: value)
-        elsif key[0] == 'i' 
-          blog.contents << Content.create(content_type: 'image', value: value)
-        elsif key[0] == 'v'
-          blog.contents << Content.create(content_type: 'video', value: "https://www.youtube.com/embed/" + value)
-        end
+        create_content_from_hash(key, value, blog)
       end
     end
     redirect_to admin_blog_path(@admin, blog)
