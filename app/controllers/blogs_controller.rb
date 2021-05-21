@@ -47,7 +47,21 @@ class BlogsController < ApplicationController
     blog.update(update_params)
     blog.status = 'draft' if params[:blog][:status].nil?
     blog.save
-    raise params[:blog][:contents].inspect
+    params[:blog][:contents].each do |key, value|
+      c = Content.find_by_id(key)
+      if c
+        c.value = value
+        c.save
+      else
+        if key[0] == 't' 
+          blog.contents << Content.create(content_type: 'text', value: value)
+        elsif key[0] == 'i' 
+          blog.contents << Content.create(content_type: 'image', value: value)
+        elsif key[0] == 'v'
+          blog.contents << Content.create(content_type: 'video', value: "https://www.youtube.com/embed/" + value)
+        end
+      end
+    end
     redirect_to admin_blog_path(@admin, blog)
   end
 

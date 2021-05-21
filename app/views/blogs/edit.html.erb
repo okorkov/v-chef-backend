@@ -19,10 +19,7 @@
           <div class="input-group" >
             <span class="input-group-text">With textarea</span>
             <textarea class="form-control" aria-label="With textarea" name="blog[contents][<%=c.id%>]" ><%=c.value%></textarea>
-            <form class="row g-3" method="post" action="/admin/<%=@admin.id%>/contents/<%=c.id%>">
-              <input type="hidden" name="blog_id" value="<%=@blog.id%>" />
-              <button type="submit" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </button>
-            </form>
+              <a href="/admin/<%=@admin.id%>/blogs/<%=@blog.id%>/contents/<%=c.id%>/destroy" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </a>
           </div><br>
         <%elsif c.content_type == 'image'%>
           <div class="input-group mb-3" >
