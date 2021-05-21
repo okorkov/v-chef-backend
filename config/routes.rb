@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get '/all_blogs' => 'all_blogs#all_blogs'
+    get '/all_blogs/:id' => 'all_blogs#show_blog'
   end
 
 end
