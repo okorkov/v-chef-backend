@@ -5,16 +5,12 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-# Rails.application.config.middleware.insert_before 0, Rack::Cors do
-
-
-#   allow do
-#     origins 'https://v-chef.web.app/', 'http://localhost:3001'
-#     resource '*',
-#       headers: :any,
-#       methods: [:get, :post, :put, :patch, :delete, :options, :head],
-#       credentials: true
-#   end
-
-# end
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'https://v-chef.web.app/', 'http://localhost:3001'
+        resource '*',
+        headers: :any,
+        methods: [:get]
+      end
+    end
 
