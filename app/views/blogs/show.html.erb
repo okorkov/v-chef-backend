@@ -19,7 +19,7 @@
     </div>
     <%end%>
   <%end%>
-  <p style="text-align:left; color:grey; padding-left:10%;">Published on <%=Date.parse(@blog.publish_date).strftime('%m/%d/%Y')%> by <%=@blog.user.name%></p>
+  <p style="text-align:left; color:grey; padding-left:10%;">Last Updated on: <%=@blog.updated_at.strftime('%m/%d/%Y')%> by <%=@blog.user.name%></p>
   <a href="<%=edit_admin_blog_path(@admin, @blog)%>" class="btn btn-primary">Edit Post</a>
 </div>
 

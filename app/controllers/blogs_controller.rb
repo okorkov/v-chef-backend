@@ -18,12 +18,12 @@ class BlogsController < ApplicationController
   end
 
   def create
-    blog = Blog.new(title: params[:blog][:title], subtitle: params[:blog][:subtitle], hero_image: params[:blog][:hero_image], user_id: @admin.id)
+    blog = Blog.new(create_blog_params)
     blog.status = 'published' if params[:blog][:status]
     blog.publish_date = Time.now if params[:blog][:status]
-   
+    blog.user_id = @admin.id
     params[:blog][:contents].each do |key, value|
-      create_content_from_hash(key, value)
+      create_content_from_hash(key, value, blog)
     end
      blog.save
      redirect_to admin_blogs_path(@admin)
@@ -72,6 +72,10 @@ class BlogsController < ApplicationController
 
   def update_params
     params.require(:blog).permit(:title, :subtitle, :hero_image, :status)
+  end
+
+  def create_blog_params
+    params.require(:blog).permit(:title, :subtitle, :hero_image)
   end
 
 end

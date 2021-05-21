@@ -16,4 +16,11 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
 
   post '/sessions/:id' => 'sessions#destroy', :as => 'sessions_destroy'
+
+  # API
+
+  namespace :api do
+    get '/all_blogs' => 'all_blogs#all_blogs'
+  end
+
 end
