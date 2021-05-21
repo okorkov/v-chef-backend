@@ -14,9 +14,9 @@ use Rack::Cors do
 
   # allow all origins in development
   allow do
-    origins '*'
+    origins 'https://v-chef.web.app/', 'http://localhost:3001'
     resource '*', 
         :headers => :any, 
-        :methods => [:get, :post, :delete, :put, :options]
+        :methods => [:get]
   end
 end
