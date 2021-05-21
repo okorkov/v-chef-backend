@@ -1,5 +1,12 @@
-<h1>Hello, <%=@admin.name%></h1>
-<p>You have written <strong><%=@admin.blogs.size%></strong> posts</p>
+<div style="text-align: center; justify-content: center">
+  <br>
+  <h1>Hello, <%=@admin.name%></h1>
+  <br>
+  <h3>You have written <strong><%=@admin.blogs.size%></strong> posts:</h3>
+  <br>
+  <h4>Currently published: <%=Blog.published.size%></h4>
+  <h4>Drafts: <%=Blog.drafts.size%></h4>
+  <br>
+  <a type="button" class="btn btn-info" href="<%=new_blog_path(@admin)%>" class="button">Create a new blog post</a>
 
-
-<a type="button" class="btn btn-info" href="<%=new_blog_path(@admin)%>" class="button">Create a new blog post</a>
+</div>
