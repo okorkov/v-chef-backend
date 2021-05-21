@@ -18,20 +18,23 @@
         <%if c.content_type == 'text'%>
           <div class="input-group" >
             <span class="input-group-text">With textarea</span>
-            <textarea class="form-control" aria-label="With textarea" name="blog[contents][<%=c.id%>>]" ><%=c.value%></textarea>
-            <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+            <textarea class="form-control" aria-label="With textarea" name="blog[contents][<%=c.id%>]" ><%=c.value%></textarea>
+            <form class="row g-3" method="post" action="/admin/<%=@admin.id%>/contents/<%=c.id%>">
+              <input type="hidden" name="blog_id" value="<%=@blog.id%>" />
+              <button type="submit" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </button>
+            </form>
           </div><br>
         <%elsif c.content_type == 'image'%>
           <div class="input-group mb-3" >
           <span class="input-group-text">Image URL</span>
             <input type="text" class="form-control" placeholder="https://www.image-hub.com/example-image.jpg" aria-describedby="basic-addon1" name="blog[contents][<%=c.id%>]" value="<%=c.value%>">
-            <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+            <button type="button" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </button>
           </div><br>
         <%elsif c.content_type == 'video'%>
           <div class="input-group mb-3" >
-            <span class="input-group-text" id="basic-addon3">https://www.youtube.com/embed/</span>
+            <span class="input-group-text" id="basic-addon3">YouTube Link</span>
             <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="e4Uq8O5ZhUA" name="blog[contents][<%=c.id%>]" value="<%=c.value%>">
-          <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+          <button type="button" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </button>
           </div><br>
         <%end%>
       <%end%>
@@ -64,9 +67,13 @@
 
 <script type="text/javascript">
 
-  function deleteField(ev) {
-    ev.target.parentNode.parentNode.removeChild(ev.target.parentNode)
-  }
+    function ConfirmDeleteContent() {
+      var x = confirm("Are you sure you want to delete this content field permanently?");
+      if (x)
+        return true;
+      else
+        return false;
+    }
 
   function addField() {
     let selector = document.getElementById('content-selector');
@@ -100,8 +107,12 @@
     }
   }
 
+    function deleteField(ev){
+      ev.target.parentNode.parentNode.removeChild(ev.target.parentNode)
+    }
+
     function ConfirmDelete() {
-      var x = confirm("Are you sure you want to this blog post?");
+      var x = confirm("Are you sure you want to delete this blog post?");
       if (x)
         return true;
       else

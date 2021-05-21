@@ -47,7 +47,7 @@ class BlogsController < ApplicationController
     blog.update(update_params)
     blog.status = 'draft' if params[:blog][:status].nil?
     blog.save
-    
+    raise params[:blog][:contents].inspect
     redirect_to admin_blog_path(@admin, blog)
   end
 
