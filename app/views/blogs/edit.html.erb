@@ -1,1 +1,101 @@
-edit blog
+<div class="container" style="padding-top: 3%;">
+  <form class="row g-3" method="post" action="/admin/<%=@admin.id%>/blogs/<%=@blog.id%>/update">
+    <div class="col-12">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Title" name="blog[title]" value=<%=@blog.title%>>
+    </div>
+    <div class="col-12">
+      <label for="subtitle" class="form-label">Subtitle</label>
+      <input type="text" class="form-control" id="subtitle" placeholder="Subtitle" name="blog[subtitle]" value=<%=@blog.subtitle%>>
+    </div>
+    <div class="col-12">
+      <label for="hero_image" class="form-label">Main Image Link</label>
+      <input type="text" class="form-control" id="hero_image" placeholder="https://www.image-example.com/example_image.jpg" name="blog[hero_image]" value=<%=@blog.hero_image%>>
+    </div>
+    <div  class="box border border-warning" style="text-align: center; border:">
+    <h3>Content:</h3>
+      <div class="input-group" style="padding-bottom:3%;">
+        <span class="input-group-text">Initial Text</span>
+        <textarea class="form-control" aria-label="With textarea" name="blog[contents][t]"></textarea>
+      </div>
+
+      <div id="contents">
+      </div>
+      
+      <select class="form-select" aria-label="Default select example" id="content-selector" style="margin-top:3%">
+        <option selected>Select Content Type</option>
+        <option value="text">Text</option>
+        <option value="image">Image</option>
+        <option value="video">Video</option>
+      </select>
+    </div>
+    <div style="text-align: center;">
+      <button type="button" style="width:30%;"class="btn btn-primary" onclick="addField()">Add Content Block</button>
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="published" name="blog[status]" value="published" <%='checked' if @blog.status == 'published'%>>
+      <label class="form-check-label" for="published">Would you like to publish this post?</label>
+    </div>
+    <div class="col-12" style="text-align: center;">
+      <button type="submit" class="btn btn-warning">Save Changes</button>
+    </div>
+  </form>
+  <form class="row g-3" method="post" action="/admin/<%=@admin.id%>/blogs/<%=@blog.id%>/destroy" style="margin-top: 5%">
+    <input type="submit" value="DELETE POST" class="btn btn-danger" style="width:20%;" Onclick="return ConfirmDelete();">
+  </form>
+</div>
+
+
+<script type="text/javascript">
+
+  function deleteField(ev) {
+    ev.target.parentNode.parentNode.removeChild(ev.target.parentNode)
+  }
+
+  function addField() {
+    let selector = document.getElementById('content-selector');
+    let contents = document.getElementById('contents');
+    if(selector.value === 'text'){
+      let textContent = `
+      <div class="input-group" >
+        <span class="input-group-text">With textarea</span>
+        <textarea class="form-control" aria-label="With textarea" name="blog[contents][t${Math.random()}]"></textarea>
+        <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+      </div><br>`;
+      contents.insertAdjacentHTML('beforebegin', textContent);
+    }
+    if(selector.value === 'image'){
+      let imageContent = `
+      <div class="input-group mb-3" >
+      <span class="input-group-text">Image URL</span>
+        <input type="text" class="form-control" placeholder="https://www.image-hub.com/example-image.jpg" aria-describedby="basic-addon1" name="blog[contents][i${Math.random()}]">
+        <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+      </div><br>`;
+      contents.insertAdjacentHTML('beforebegin', imageContent);
+    }
+    if(selector.value === 'video'){
+      let videoContent = `
+      <div class="input-group mb-3" >
+        <span class="input-group-text" id="basic-addon3">https://www.youtube.com/embed/</span>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="e4Uq8O5ZhUA" name="blog[contents][v${Math.random()}]">
+        <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+      </div><br>`;
+      contents.insertAdjacentHTML('beforebegin', videoContent);
+    }
+  }
+
+    function ConfirmDelete() {
+      var x = confirm("Are you sure you want to this blog post?");
+      if (x)
+        return true;
+      else
+        return false;
+    }
+
+</script>
+
+<style type="text/css">
+  .border { border: 3px solid #dee2e6!important; padding: 3% !important; border-color: #ffc107!important;
+}
+</style>
+

@@ -43,22 +43,12 @@ class BlogsController < ApplicationController
   end
 
   def update
+    raise params.inspect
   end
 
   def destroy
+    Blog.find_by_id(params[:blog_id]).destroy
+    redirect_to admin_blogs_path(@admin)
   end
-end
 
- hash = 
- {"blog"=>
-  {":title"=>"title",
-   ":subtitle"=>"subtitle",
-   ":hero_image"=>"herolink",
-   ":contents"=>
-    {"t"=>"Initial text",
-     "t0.5779491471223361"=>"Second Line of Text here",
-     "i0.6388764074943005"=>"Image Link",
-     "v0.1496596439558211"=>"Video Link",
-     "t0.2467319643854946"=>"And Finish off with some text again"},
-   ":status"=>"published"},
- "admin_id"=>"1"}
+end
