@@ -70,6 +70,16 @@ class BlogsController < ApplicationController
     redirect_to admin_blogs_path(@admin)
   end
 
+  def drafts
+    @blogs = Blog.drafts
+    render :index
+  end
+
+  def published
+    @blogs = Blog.published
+    render :index
+  end
+
   private
 
   def update_params

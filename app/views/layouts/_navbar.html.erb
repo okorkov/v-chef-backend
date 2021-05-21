@@ -12,6 +12,12 @@
         <li class="nav-item">
           <a class="nav-link" href="<%=admin_blogs_path(@admin)%>">All Blog Posts</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=admin_blogs_published_path(@admin)%>">All Published</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=admin_blogs_drafts_path(@admin)%>">All Drafts</a>
+        </li>
         <li style="position:absolute; right:0; padding-right: 5%;">
          <%=form_tag sessions_destroy_path(current_user), class:'form-group', method:'post' do%>
           <%=submit_tag 'Log Out', class: "btn btn-danger"%>

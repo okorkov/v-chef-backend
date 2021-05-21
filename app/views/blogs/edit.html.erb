@@ -25,13 +25,13 @@
           <div class="input-group mb-3" >
           <span class="input-group-text">Image URL</span>
             <input type="text" class="form-control" placeholder="https://www.image-hub.com/example-image.jpg" aria-describedby="basic-addon1" name="blog[contents][<%=c.id%>]" value="<%=c.value%>">
-            <button type="button" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </button>
+            <a href="/admin/<%=@admin.id%>/blogs/<%=@blog.id%>/contents/<%=c.id%>/destroy" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </a>
           </div><br>
         <%elsif c.content_type == 'video'%>
           <div class="input-group mb-3" >
             <span class="input-group-text" id="basic-addon3">YouTube Link</span>
             <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="e4Uq8O5ZhUA" name="blog[contents][<%=c.id%>]" value="<%=c.value%>">
-          <button type="button" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </button>
+          <a href="/admin/<%=@admin.id%>/blogs/<%=@blog.id%>/contents/<%=c.id%>/destroy" class="btn btn-danger" onclick="ConfirmDeleteContent()" > X </a>
           </div><br>
         <%end%>
       <%end%>
