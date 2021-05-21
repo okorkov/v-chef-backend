@@ -7,14 +7,17 @@
     <%@blogs.each do |blog|%>
   <div class="col">
       <div class="card" style="min-width: 25rem; min-height:30rem;">
+      <a href="<%=admin_blog_path(@admin, blog)%>">
         <img class="card-img-top" src="<%=blog.hero_image%>" alt="blog image">
         <div class="card-body">
           <h5 class="card-title"><%=blog.title%></h5>
+      </a>
           <p class="card-text"><%=blog.subtitle%></p>
-          <a href="<%=admin_blog_path(@admin, blog)%>" class="btn btn-primary">See Full Blog</a>
+          <a href="<%=edit_admin_blog_path(@admin, blog)%>" class="btn btn-primary">Edit Post</a>
         </div>
       </div>
   </div>
     <%end%>
 </div>
+
 

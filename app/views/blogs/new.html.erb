@@ -44,34 +44,43 @@
 
 
 <script type="text/javascript">
+
+  function deleteField(ev) {
+    ev.target.parentNode.parentNode.removeChild(ev.target.parentNode)
+  }
+
   function addField() {
     let selector = document.getElementById('content-selector');
     let contents = document.getElementById('contents');
     if(selector.value === 'text'){
       let textContent = `
-      <div class="input-group">
+      <div class="input-group" >
         <span class="input-group-text">With textarea</span>
         <textarea class="form-control" aria-label="With textarea" name="blog[contents][t${Math.random()}]"></textarea>
+        <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
       </div><br>`;
       contents.insertAdjacentHTML('beforebegin', textContent);
     }
     if(selector.value === 'image'){
       let imageContent = `
-      <div class="input-group mb-3">
+      <div class="input-group mb-3" >
       <span class="input-group-text">Image URL</span>
         <input type="text" class="form-control" placeholder="https://www.image-hub.com/example-image.jpg" aria-describedby="basic-addon1" name="blog[contents][i${Math.random()}]">
+        <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
       </div><br>`;
       contents.insertAdjacentHTML('beforebegin', imageContent);
     }
     if(selector.value === 'video'){
       let videoContent = `
-      <div class="input-group mb-3">
+      <div class="input-group mb-3" >
         <span class="input-group-text" id="basic-addon3">https://www.youtube.com/embed/</span>
         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="e4Uq8O5ZhUA" name="blog[contents][v${Math.random()}]">
+        <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
       </div><br>`;
       contents.insertAdjacentHTML('beforebegin', videoContent);
     }
   }
+
 </script>
 
 <style type="text/css">

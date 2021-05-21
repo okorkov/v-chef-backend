@@ -8,6 +8,9 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find_by_id(params[:id])
+    if !@blog
+      redirect_to admin_blogs_path(@admin)
+    end
   end
 
   def new
@@ -33,6 +36,10 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    @blog = Blog.find_by_id(params[:blog_id])
+    if !@blog
+      redirect_to admin_blogs_path(@admin)
+    end
   end
 
   def update
