@@ -43,12 +43,23 @@ class BlogsController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    blog = Blog.find_by_id(params[:blog_id])
+    blog.update(update_params)
+    blog.status = 'draft' if params[:blog][:status].nil?
+    blog.save
+    
+    redirect_to admin_blog_path(@admin, blog)
   end
 
   def destroy
     Blog.find_by_id(params[:blog_id]).destroy
     redirect_to admin_blogs_path(@admin)
+  end
+
+  private
+
+  def update_params
+    params.require(:blog).permit(:title, :subtitle, :hero_image, :status)
   end
 
 end

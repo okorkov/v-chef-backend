@@ -2,23 +2,39 @@
   <form class="row g-3" method="post" action="/admin/<%=@admin.id%>/blogs/<%=@blog.id%>/update">
     <div class="col-12">
       <label for="title" class="form-label">Title</label>
-      <input type="text" class="form-control" id="title" placeholder="Title" name="blog[title]" value=<%=@blog.title%>>
+      <input type="text" class="form-control" id="title" placeholder="Title" name="blog[title]" value="<%=@blog.title%>">
     </div>
     <div class="col-12">
       <label for="subtitle" class="form-label">Subtitle</label>
-      <input type="text" class="form-control" id="subtitle" placeholder="Subtitle" name="blog[subtitle]" value=<%=@blog.subtitle%>>
+      <input type="text" class="form-control" id="subtitle" placeholder="Subtitle" name="blog[subtitle]" value="<%=@blog.subtitle%>">
     </div>
     <div class="col-12">
       <label for="hero_image" class="form-label">Main Image Link</label>
-      <input type="text" class="form-control" id="hero_image" placeholder="https://www.image-example.com/example_image.jpg" name="blog[hero_image]" value=<%=@blog.hero_image%>>
+      <input type="text" class="form-control" id="hero_image" placeholder="https://www.image-example.com/example_image.jpg" name="blog[hero_image]" value="<%=@blog.hero_image%>">
     </div>
     <div  class="box border border-warning" style="text-align: center; border:">
     <h3>Content:</h3>
-      <div class="input-group" style="padding-bottom:3%;">
-        <span class="input-group-text">Initial Text</span>
-        <textarea class="form-control" aria-label="With textarea" name="blog[contents][t]"></textarea>
-      </div>
-
+      <%@blog.contents.each do |c|%>
+        <%if c.content_type == 'text'%>
+          <div class="input-group" >
+            <span class="input-group-text">With textarea</span>
+            <textarea class="form-control" aria-label="With textarea" name="blog[contents][<%=c.id%>>]" ><%=c.value%></textarea>
+            <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+          </div><br>
+        <%elsif c.content_type == 'image'%>
+          <div class="input-group mb-3" >
+          <span class="input-group-text">Image URL</span>
+            <input type="text" class="form-control" placeholder="https://www.image-hub.com/example-image.jpg" aria-describedby="basic-addon1" name="blog[contents][<%=c.id%>]" value="<%=c.value%>">
+            <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+          </div><br>
+        <%elsif c.content_type == 'video'%>
+          <div class="input-group mb-3" >
+            <span class="input-group-text" id="basic-addon3">https://www.youtube.com/embed/</span>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="e4Uq8O5ZhUA" name="blog[contents][<%=c.id%>]" value="<%=c.value%>">
+          <button type="button" class="btn btn-danger" onclick="deleteField(event)" > X </button>
+          </div><br>
+        <%end%>
+      <%end%>
       <div id="contents">
       </div>
       

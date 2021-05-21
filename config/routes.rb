@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :admin, only: [:index] do 
     resources :blogs
-    resources :contents
   end
 
   resources :sessions, only: [:new, :create]
