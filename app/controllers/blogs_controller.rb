@@ -25,6 +25,7 @@ class BlogsController < ApplicationController
     params[:blog][:contents].each do |key, value|
       create_content_from_hash(key, value, blog)
     end
+    blog.category_id = params[:blog][:category]
      blog.save
      redirect_to admin_blogs_path(@admin)
   end
@@ -40,6 +41,7 @@ class BlogsController < ApplicationController
     blog = Blog.find_by_id(params[:blog_id])
     blog.update(update_params)
     blog.status = 'draft' if params[:blog][:status].nil?
+    blog.category_id = params[:blog][:category]
     blog.save
     params[:blog][:contents].each do |key, value|
       c = Content.find_by_id(key)

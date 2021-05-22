@@ -26,4 +26,13 @@ module ApplicationHelper
     end
   end
 
+  def render_single_blog(params)
+    blog = Blog.find_by_id(params[:id])
+    if blog
+      render json: blog, except: [:user_id, :status] , include: [:contents => {except: [:created_at, :updated_at, :blog_id]}]
+    else 
+      render json: {error: 'Blog Not Found'}
+    end
+  end
+
 end

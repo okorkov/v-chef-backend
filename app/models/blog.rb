@@ -6,4 +6,7 @@ class Blog < ApplicationRecord
 
   scope :published, -> { where(status: 'published').order("id desc") }
   scope :drafts, -> { where.not(status: 'published').order("id desc") }
+  scope :cooking, -> { where(status: 'published', category_id: 2).order("id desc") }
+  scope :lifestyle, -> { where(status: 'published', category_id: 1).order("id desc") }
+
 end

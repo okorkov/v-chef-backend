@@ -12,6 +12,18 @@
       <label for="hero_image" class="form-label">Main Image Link</label>
       <input type="text" class="form-control" id="hero_image" placeholder="https://www.image-example.com/example_image.jpg" name="blog[hero_image]" value="<%=@blog.hero_image%>">
     </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="blog[category]" id="cooking-radio" value="2" <%='checked' if @blog.category_id == 2%>>
+      <label class="form-check-label" for="cooking-radio">
+        Cooking
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="blog[category]" id="lifestyle-radio" value="1" <%='checked' if @blog.category_id == 1%>>
+      <label class="form-check-label" for="lifestyle-radio">
+        Life style
+      </label>
+    </div>
     <div  class="box border border-warning" style="text-align: center; border:">
     <h3>Content:</h3>
       <%@blog.contents.each do |c|%>
